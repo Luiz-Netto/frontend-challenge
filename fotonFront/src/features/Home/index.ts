@@ -1,3 +1,3 @@
-// import {} from '';
+import {Home} from './Home';
 
-// export {};
+export {Home};
