@@ -11,7 +11,7 @@ export const Routes = () => {
     <BottomTab.Navigator>
       <BottomTab.Screen
         name="Home"
-        component={features.HomeFeature.Home}
+        component={features.HomeFeature.Screens.HomeScreen}
         options={{
           tabBarIcon: () => {
             return <Feather name="home" color="#000000" size={18} />;

@@ -1,3 +1,3 @@
-import {Home} from './Home';
+import * as Screens from './screens';
 
-export {Home};
+export {Screens};

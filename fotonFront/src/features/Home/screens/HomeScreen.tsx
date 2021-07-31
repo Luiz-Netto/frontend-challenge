@@ -3,13 +3,18 @@ import {Text, TextInput, StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
-export const Home = () => {
+export const HomeScreen = () => {
   const [search, setSearch] = useState('');
   console.log(search);
   return (
     <SafeAreaView style={styles.screenContainer}>
       <View style={styles.searchContainer}>
-        <EvilIcons name="search" size={25} color="#F0F0F0" />
+        <EvilIcons
+          name="search"
+          size={25}
+          color="#F0F0F0"
+          style={styles.searchIcon}
+        />
         <TextInput
           value={search}
           onChangeText={setSearch}
@@ -33,7 +38,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFCF9',
   },
   searchContainer: {
-    maxHeight: 48,
+    height: 48,
+    width: '80%',
     marginHorizontal: 20,
     marginTop: 50,
     marginBottom: 20,
@@ -44,6 +50,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
   },
+  searchIcon: {marginLeft: 12, marginRight: 8},
   searchInput: {},
   text: {textAlign: 'center', color: '#000000'},
   textName: {textAlign: 'center', color: '#AA0000'},
