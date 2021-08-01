@@ -8,13 +8,18 @@ const BottomTab = createBottomTabNavigator();
 
 export const Routes = () => {
   return (
-    <BottomTab.Navigator>
+    <BottomTab.Navigator
+      tabBarOptions={{
+        activeTintColor: '#000000',
+        inactiveTintColor: '#BFBEBF',
+        keyboardHidesTabBar: true,
+      }}>
       <BottomTab.Screen
         name="Home"
         component={features.HomeFeature.Screens.HomeScreen}
         options={{
-          tabBarIcon: () => {
-            return <Feather name="home" color="#000000" size={18} />;
+          tabBarIcon: ({color}) => {
+            return <Feather name="home" color={color} size={18} />;
           },
         }}
       />
@@ -22,8 +27,8 @@ export const Routes = () => {
         name="Libraries"
         component={features.LibrariesFeature.Libraries}
         options={{
-          tabBarIcon: () => {
-            return <Feather name="book" color="#000000" size={18} />;
+          tabBarIcon: ({color}) => {
+            return <Feather name="home" color={color} size={18} />;
           },
         }}
       />
@@ -31,8 +36,8 @@ export const Routes = () => {
         name="Profile"
         component={features.ProfileFeature.Profile}
         options={{
-          tabBarIcon: () => {
-            return <Feather name="user" color="#000000" size={18} />;
+          tabBarIcon: ({color}) => {
+            return <Feather name="home" color={color} size={18} />;
           },
         }}
       />
