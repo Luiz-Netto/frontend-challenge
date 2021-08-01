@@ -20,7 +20,6 @@ export const SearchBar = () => {
         onChangeText={setSearch}
         placeholder="Search Book"
         placeholderTextColor="#54565A"
-        style={styles.searchInput}
         autoCorrect={false}
         autoCapitalize="none"
         maxLength={25}
@@ -31,18 +30,15 @@ export const SearchBar = () => {
 
 const styles = StyleSheet.create({
   searchContainer: {
-    flex: 1,
-    maxHeight: 50,
+    height: 50,
     marginTop: 50,
     marginHorizontal: 20,
     marginBottom: 20,
     borderRadius: 10,
-    borderWidth: 2,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
   },
   searchIcon: {marginLeft: 12, marginRight: 8},
-  searchInput: {flex: 1},
 });

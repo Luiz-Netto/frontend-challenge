@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, StyleSheet} from 'react-native';
+import {Text, StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {BookShowcase, SearchBar} from '../components';
@@ -8,9 +8,11 @@ export const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.screenContainer}>
       <SearchBar />
-      <Text style={styles.text}>
-        Hi, <Text style={styles.textName}>Mehmed Al Fatih</Text> 👋
-      </Text>
+      <View style={styles.greetings}>
+        <Text style={styles.greetingsText}>
+          Hi, <Text style={styles.greetingsTextName}>Mehmed Al Fatih</Text> 👋
+        </Text>
+      </View>
       <BookShowcase />
     </SafeAreaView>
   );
@@ -19,10 +21,12 @@ export const HomeScreen = () => {
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#FFFCF9',
   },
-  text: {textAlign: 'center', color: '#000000'},
-  textName: {textAlign: 'center', color: '#AA0000'},
+  greetings: {
+    alignItems: 'flex-start',
+    marginHorizontal: 20,
+  },
+  greetingsText: {textAlign: 'center', color: '#000000', fontSize: 24},
+  greetingsTextName: {textAlign: 'center', color: '#F65066', fontSize: 24},
 });
