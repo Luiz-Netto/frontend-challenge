@@ -28,7 +28,7 @@ export const Routes = () => {
         component={features.LibrariesFeature.Libraries}
         options={{
           tabBarIcon: ({color}) => {
-            return <Feather name="home" color={color} size={18} />;
+            return <Feather name="book" color={color} size={18} />;
           },
         }}
       />
@@ -37,7 +37,7 @@ export const Routes = () => {
         component={features.ProfileFeature.Profile}
         options={{
           tabBarIcon: ({color}) => {
-            return <Feather name="home" color={color} size={18} />;
+            return <Feather name="user" color={color} size={18} />;
           },
         }}
       />
