@@ -1,11 +1,16 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TextProps, View} from 'react-native';
 
-export const SectionTitle = ({title, link}) => {
+interface ISectionTitle extends TextProps {
+  title: string;
+  link: string;
+}
+
+export const SectionTitle = (props: ISectionTitle) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.link}>{link}</Text>
+      <Text style={styles.title}>{props.title}</Text>
+      <Text style={styles.link}>{props.link}</Text>
     </View>
   );
 };
