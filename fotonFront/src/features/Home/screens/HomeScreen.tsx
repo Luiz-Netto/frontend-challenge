@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-import {BookShowcase, SearchBar} from '../components';
+import {BookShowcase, SearchBar, SectionTitle} from '../components';
 
 export const HomeScreen = () => {
   return (
@@ -13,7 +13,10 @@ export const HomeScreen = () => {
           Hi, <Text style={styles.greetingsTextName}>Mehmed Al Fatih</Text> 👋
         </Text>
       </View>
+      <SectionTitle title="Discover New Book" link="More" />
       <BookShowcase />
+      <SectionTitle title="Currently Reading" link="All" />
+      <SectionTitle title="Reviews of The Days" link="All video" />
     </SafeAreaView>
   );
 };
