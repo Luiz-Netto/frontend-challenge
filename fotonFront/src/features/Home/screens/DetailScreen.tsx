@@ -3,10 +3,10 @@ import {StyleSheet} from 'react-native';
 import {Text} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-export const Libraries = ({navigation}) => {
+export const DetailScreen = ({navigation, route}) => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>LIBRARIES SCREEN</Text>
+      <Text style={styles.text}>DETAIL SCREEN</Text>
     </SafeAreaView>
   );
 };

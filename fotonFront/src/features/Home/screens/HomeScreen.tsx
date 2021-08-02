@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, StyleSheet, View, ImageBackground, Image} from 'react-native';
+import {Text, StyleSheet, View, Image} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -13,9 +13,21 @@ interface ICarouselRenderItemProps {
 
 export const HomeScreen = () => {
   const testArray = [1, 2, 3, 4, 5, 6];
-  const cauroselItem = (props: ICarouselRenderItemProps) => (
-    <BookShowcase data={props.item} even={(props.index + 1) % 2 === 0} />
-  );
+  const cauroselItem = (props: ICarouselRenderItemProps) => {
+    const data = props.item;
+    return (
+      <BookShowcase
+        data={data}
+        even={(props.index + 1) % 2 === 0}
+        // onPress={data => {
+        //   navigation.navigate('Routes', {
+        //     screen: 'Detail',
+        //     params: data,
+        //   });
+        // }}
+      />
+    );
+  };
 
   return (
     <SafeAreaView style={styles.screenContainer}>

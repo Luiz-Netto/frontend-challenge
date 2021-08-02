@@ -1,3 +1,4 @@
 import * as Screens from './screens';
+import * as Routes from './routes';
 
-export {Screens};
+export {Routes, Screens};
