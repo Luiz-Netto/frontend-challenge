@@ -1,10 +1,68 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-export const BookShowcase = () => {
-  return <View style={styles.container}></View>;
+interface IBookShowcaseProps {
+  data: any;
+  even: boolean;
+}
+
+export const BookShowcase = (props: IBookShowcaseProps) => {
+  return (
+    <View
+      style={[
+        styles.container,
+        props.even
+          ? {backgroundColor: '#451475'}
+          : {backgroundColor: '#00173D'},
+      ]}>
+      <View style={styles.titleContainer}>
+        <View>
+          <Text style={styles.title}>Title</Text>
+          <Text style={styles.author}>Author</Text>
+        </View>
+        <View style={styles.bookInfoContainer}>
+          <MaterialIcons
+            name="insert-chart-outlined"
+            size={12}
+            style={styles.bookInfoIcon}
+          />
+          <Text style={styles.bookInfoText}>
+            <Text style={styles.bookInfoNumber}>Number</Text> Read Now
+          </Text>
+        </View>
+      </View>
+      {/* <Image /> */}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
-  container: {flex: 1},
+  container: {
+    backgroundColor: '#00173D',
+    width: 270,
+    height: 140,
+    borderRadius: 9,
+    flexDirection: 'row',
+  },
+  titleContainer: {
+    marginHorizontal: 20,
+    justifyContent: 'space-around',
+  },
+  title: {fontSize: 27, color: '#FEFEFE', fontWeight: 'bold'},
+  author: {
+    fontSize: 14,
+    color: '#E7E7E1',
+  },
+  bookInfoContainer: {flexDirection: 'row'},
+  bookInfoIcon: {color: '#E7E7E1'},
+  bookInfoText: {
+    fontSize: 10,
+    color: '#E7E7E1',
+  },
+  bookInfoNumber: {
+    fontSize: 10,
+    color: '#E7E7E1',
+    fontWeight: 'bold',
+  },
 });
