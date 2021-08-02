@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-
 import {Text, StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';

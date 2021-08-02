@@ -12,9 +12,7 @@ export const BookShowcase = (props: IBookShowcaseProps) => {
     <View
       style={[
         styles.container,
-        props.even
-          ? {backgroundColor: '#451475'}
-          : {backgroundColor: '#00173D'},
+        props.even ? styles.containerEven : styles.containerOdd,
       ]}>
       <View style={styles.titleContainer}>
         <View>
@@ -45,6 +43,8 @@ const styles = StyleSheet.create({
     borderRadius: 9,
     flexDirection: 'row',
   },
+  containerEven: {backgroundColor: '#451475'},
+  containerOdd: {backgroundColor: '#00173D'},
   titleContainer: {
     marginHorizontal: 20,
     justifyContent: 'space-around',
