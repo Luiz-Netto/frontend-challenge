@@ -1,46 +1,37 @@
 import React from 'react';
-import {
-  Image,
-  Pressable,
-  PressableProps,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-interface IBookShowcaseProps extends PressableProps {
+interface IBookShowcaseProps {
   data: any;
   even: boolean;
 }
 
 export const BookShowcase = (props: IBookShowcaseProps) => {
   return (
-    <Pressable onPress={props.onPress}>
-      <View
-        style={[
-          styles.container,
-          props.even ? styles.containerEven : styles.containerOdd,
-        ]}>
-        <View style={styles.titleContainer}>
-          <View>
-            <Text style={styles.title}>Title</Text>
-            <Text style={styles.author}>Author</Text>
-          </View>
-          <View style={styles.bookInfoContainer}>
-            <MaterialIcons
-              name="insert-chart-outlined"
-              size={12}
-              style={styles.bookInfoIcon}
-            />
-            <Text style={styles.bookInfoText}>
-              <Text style={styles.bookInfoNumber}>Number</Text> Read Now
-            </Text>
-          </View>
+    <View
+      style={[
+        styles.container,
+        props.even ? styles.containerEven : styles.containerOdd,
+      ]}>
+      <View style={styles.titleContainer}>
+        <View>
+          <Text style={styles.title}>Title</Text>
+          <Text style={styles.author}>Author</Text>
         </View>
-        {/* <Image /> */}
+        <View style={styles.bookInfoContainer}>
+          <MaterialIcons
+            name="insert-chart-outlined"
+            size={12}
+            style={styles.bookInfoIcon}
+          />
+          <Text style={styles.bookInfoText}>
+            <Text style={styles.bookInfoNumber}>Number</Text> Read Now
+          </Text>
+        </View>
       </View>
-    </Pressable>
+      {/* <Image /> */}
+    </View>
   );
 };
 

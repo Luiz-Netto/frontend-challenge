@@ -6,21 +6,23 @@ import * as features from '../features';
 
 const BottomTab = createBottomTabNavigator();
 
-export const Routes = () => {
+export const TabRoutes = () => {
   return (
     <BottomTab.Navigator
-      tabBarOptions={{
-        activeTintColor: '#000000',
-        inactiveTintColor: '#BFBEBF',
-        keyboardHidesTabBar: true,
+      initialRouteName="HomeFeature"
+      defaultScreenOptions={{
+        tabBarActiveTintColor: '#000000',
+        tabBarInactiveTintColor: '#BFBEBF',
+        tabBarHideOnKeyboard: true,
       }}>
       <BottomTab.Screen
-        name="Home"
+        name="HomeFeature"
         component={features.HomeFeature.Screens.HomeScreen}
         options={{
           tabBarIcon: ({color}) => {
             return <Feather name="home" color={color} size={18} />;
           },
+          headerShown: false,
         }}
       />
       <BottomTab.Screen
@@ -30,6 +32,7 @@ export const Routes = () => {
           tabBarIcon: ({color}) => {
             return <Feather name="book" color={color} size={18} />;
           },
+          headerShown: false,
         }}
       />
       <BottomTab.Screen
@@ -39,6 +42,7 @@ export const Routes = () => {
           tabBarIcon: ({color}) => {
             return <Feather name="user" color={color} size={18} />;
           },
+          headerShown: false,
         }}
       />
     </BottomTab.Navigator>

@@ -3,13 +3,13 @@ import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
 
-import {Routes} from './routes';
+import {MainRoutes} from './routes';
 
 const App = () => {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Routes />
+        <MainRoutes />
       </NavigationContainer>
     </SafeAreaProvider>
   );
