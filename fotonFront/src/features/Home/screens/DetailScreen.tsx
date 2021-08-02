@@ -1,12 +1,22 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {Text} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export const DetailScreen = ({navigation, route}) => {
+  // const {data} = route.params;
+  // console.log(route.params);
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>DETAIL SCREEN</Text>
+      <View>
+        <AntDesign
+          name="arrowleft"
+          size={20}
+          onPress={() => navigation.goBack()}
+        />
+        {/* <Image /> */}
+      </View>
+      <Text style={styles.text}>data</Text>
     </SafeAreaView>
   );
 };

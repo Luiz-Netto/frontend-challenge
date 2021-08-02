@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Text, StyleSheet, View, Image, Pressable} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -14,53 +15,57 @@ interface ICarouselRenderItemProps {
 export const HomeScreen = ({navigation}) => {
   const testArray = [1, 2, 3, 4, 5, 6];
   const cauroselItem = (props: ICarouselRenderItemProps) => {
-    const data = props.item;
+    const toDetails = (data: any) => {
+      navigation.navigate('Detail', {data});
+    };
     return (
-      <Pressable
-        onPress={data => {
-          navigation.navigate('Detail', {data});
-        }}>
-        <BookShowcase data={data} even={(props.index + 1) % 2 === 0} />
-      </Pressable>
+      <BookShowcase
+        data={props.item}
+        even={(props.index + 1) % 2 === 0}
+        goToDetails={toDetails}
+      />
     );
   };
 
   return (
     <SafeAreaView style={styles.screenContainer}>
-      <SearchBar />
-      <View style={styles.greetings}>
-        <Text style={styles.greetingsText}>
-          Hi, <Text style={styles.greetingsTextName}>Mehmed Al Fatih</Text> 👋
-        </Text>
-      </View>
-      <SectionTitle title="Discover New Book" link="More" />
-      <View>
-        <Carousel
-          data={testArray}
-          renderItem={cauroselItem}
-          itemWidth={270}
-          sliderWidth={400}
-          activeSlideAlignment="start"
-          contentContainerCustomStyle={styles.carouselContent}
-        />
-      </View>
-      <SectionTitle title="Currently Reading" link="All" />
-      <View style={styles.readingContainer}>
+      <ScrollView>
+        <SearchBar />
+        <View style={styles.greetings}>
+          <Text style={styles.greetingsText}>
+            Hi, <Text style={styles.greetingsTextName}>Mehmed Al Fatih</Text> 👋
+          </Text>
+        </View>
+        <SectionTitle title="Discover New Book" link="More" />
         <View>
-          {/* <Image style={styles.readingBookCover}/> */}
-          <View style={styles.readingInfo}>
-            <Text style={styles.readingTitle}>Title</Text>
-            <Text style={styles.readingAuthor}>Author</Text>
-            <View style={styles.readingChapterContainer}>
-              <AntDesign name="book" size={14} color="#9013FE" />
-              <Text style={styles.readingChapterText}>
-                chapter<Text style={styles.readingChapterNumber}>2</Text>from 9
-              </Text>
+          <Carousel
+            data={testArray}
+            renderItem={cauroselItem}
+            itemWidth={270}
+            sliderWidth={400}
+            activeSlideAlignment="start"
+            contentContainerCustomStyle={styles.carouselContent}
+          />
+        </View>
+        <SectionTitle title="Currently Reading" link="All" />
+        <View style={styles.readingContainer}>
+          <View>
+            {/* <Image style={styles.readingBookCover}/> */}
+            <View style={styles.readingInfo}>
+              <Text style={styles.readingTitle}>Title</Text>
+              <Text style={styles.readingAuthor}>Author</Text>
+              <View style={styles.readingChapterContainer}>
+                <AntDesign name="book" size={14} color="#9013FE" />
+                <Text style={styles.readingChapterText}>
+                  chapter<Text style={styles.readingChapterNumber}>2</Text>from
+                  9
+                </Text>
+              </View>
             </View>
           </View>
         </View>
-      </View>
-      <SectionTitle title="Reviews of The Days" link="All video" />
+        <SectionTitle title="Reviews of The Days" link="All video" />
+      </ScrollView>
     </SafeAreaView>
   );
 };
