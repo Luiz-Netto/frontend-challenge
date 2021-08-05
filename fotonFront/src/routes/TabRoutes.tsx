@@ -10,7 +10,7 @@ export const TabRoutes = () => {
   return (
     <BottomTab.Navigator
       initialRouteName="HomeFeature"
-      defaultScreenOptions={{
+      screenOptions={{
         tabBarActiveTintColor: '#000000',
         tabBarInactiveTintColor: '#BFBEBF',
         tabBarHideOnKeyboard: true,

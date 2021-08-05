@@ -2,6 +2,8 @@ import React from 'react';
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
+const Hooked = require('../assets/Hooked.png');
+
 interface IBookShowcaseProps {
   data: any;
   even: boolean;
@@ -13,7 +15,6 @@ export const BookShowcase = (props: IBookShowcaseProps) => {
     <Pressable
       onPress={() => {
         props.goToDetails(props.data);
-        console.log(props.data);
       }}>
       <View
         style={[
@@ -22,8 +23,9 @@ export const BookShowcase = (props: IBookShowcaseProps) => {
         ]}>
         <View style={styles.titleContainer}>
           <View>
-            <Text style={styles.title}>Title</Text>
-            <Text style={styles.author}>Author</Text>
+            <Text style={styles.title}>{`${props.data.volumeInfo.title}`}</Text>
+            <Text
+              style={styles.author}>{`${props.data.volumeInfo.authors}`}</Text>
           </View>
           <View style={styles.bookInfoContainer}>
             <MaterialIcons
@@ -32,11 +34,15 @@ export const BookShowcase = (props: IBookShowcaseProps) => {
               style={styles.bookInfoIcon}
             />
             <Text style={styles.bookInfoText}>
-              <Text style={styles.bookInfoNumber}>Number</Text> Read Now
+              <Text
+                style={
+                  styles.bookInfoNumber
+                }>{` ${props.data.number} + `}</Text>
+              Read Now
             </Text>
           </View>
         </View>
-        {/* <Image /> */}
+        <Image source={Hooked} style={styles.bookCover} />
       </View>
     </Pressable>
   );
@@ -71,5 +77,13 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: '#E7E7E1',
     fontWeight: 'bold',
+  },
+  bookCover: {
+    maxHeight: 110,
+    maxWidth: 80,
+    alignSelf: 'center',
+    marginHorizontal: 20,
+    marginTop: 15,
+    marginBottom: 13,
   },
 });
