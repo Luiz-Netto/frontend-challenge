@@ -1,25 +1,53 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Feather from 'react-native-vector-icons/Feather';
 
 const origials = require('../assets/Originals.png');
 
 export const DetailScreen = ({navigation, route}) => {
   // const {data} = route.params;
-  console.log(route.params.data.volumeInfo.title);
+  // console.log(route.params.data.volumeInfo.title);
+  const book = route.params.data;
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.imageContainer}>
-        <AntDesign
-          name="arrowleft"
-          size={20}
-          onPress={() => navigation.goBack()}
-          style={styles.icon}
-        />
-        <Image source={origials} style={styles.image} />
+      <ScrollView>
+        <View style={styles.imageContainer}>
+          <AntDesign
+            name="arrowleft"
+            size={20}
+            onPress={() => navigation.goBack()}
+            style={styles.icon}
+          />
+          <Image source={origials} style={styles.image} />
+        </View>
+        <View style={styles.bookInfoContainer}>
+          <Text style={styles.subTitle}>
+            <Text style={styles.title}>{`${book.volumeInfo.title}`}</Text>
+            {`: ${book.volumeInfo.subtitle}`}
+          </Text>
+          <Text style={styles.author}>{`${book.volumeInfo.authors}`}</Text>
+          <Text
+            style={styles.description}>{`${book.volumeInfo.description}`}</Text>
+        </View>
+      </ScrollView>
+      <View style={styles.footerContainer}>
+        <View style={styles.footerContainer}>
+          <Feather name="book-open" size={18} color="#CFCBD2" />
+          <Text style={styles.footerLabel}>READ</Text>
+        </View>
+        <View style={styles.footerSeparator} />
+        <View style={styles.footerContainer}>
+          <Feather name="headphones" size={18} color="#CFCBD2" />
+          <Text style={styles.footerLabel}>READ</Text>
+        </View>
+        <View style={styles.footerSeparator} />
+        <View style={styles.footerContainer}>
+          <Feather name="share" size={18} color="#CFCBD2" />
+          <Text style={styles.footerLabel}>READ</Text>
+        </View>
       </View>
-      <Text style={styles.text}>data</Text>
     </SafeAreaView>
   );
 };
@@ -34,6 +62,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF6E5',
     borderBottomRightRadius: 100,
     maxHeight: 280,
+    marginBottom: 20,
   },
   icon: {
     alignSelf: 'flex-start',
@@ -45,7 +74,56 @@ const styles = StyleSheet.create({
     height: 234,
     marginHorizontal: 110,
     position: 'relative',
-    top: 30,
+    top: 20,
   },
-  text: {textAlign: 'center', color: '#000000'},
+  bookInfoContainer: {flex: 1, marginTop: 60, marginHorizontal: 20},
+  subTitle: {
+    textAlign: 'left',
+    color: '#36383A',
+    fontSize: 24,
+    fontWeight: '400',
+  },
+  title: {
+    color: '#36383A',
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  author: {
+    textAlign: 'left',
+    color: '#FF6978',
+    fontSize: 16,
+    lineHeight: 18,
+    marginVertical: 10,
+  },
+  description: {
+    textAlign: 'left',
+    color: '#313131',
+    fontSize: 14,
+    lineHeight: 25,
+  },
+  footerContainer: {
+    maxHeight: 56,
+    marginHorizontal: 20,
+    paddingVertical: 8,
+    backgroundColor: '#FFFFFF',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  footerReadContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  footerLabel: {
+    marginLeft: 6,
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#3F4043',
+  },
+  footerSeparator: {
+    width: 1,
+    height: '60%',
+    backgroundColor: '#CFCBD2',
+    borderColor: '#CFCBD2',
+  },
 });

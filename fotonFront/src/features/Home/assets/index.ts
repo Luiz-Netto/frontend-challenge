@@ -1,3 +1,4 @@
 import {INITIAL_SHOWCASE_BOOKS, READING_BOOK} from './InitialBooks';
+import {fetchBooks} from './api';
 
-export {INITIAL_SHOWCASE_BOOKS, READING_BOOK};
+export {fetchBooks, INITIAL_SHOWCASE_BOOKS, READING_BOOK};

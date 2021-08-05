@@ -6,7 +6,7 @@ import Carousel from 'react-native-snap-carousel';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {BookShowcase, SearchBar, SectionTitle} from '../components';
-import {INITIAL_SHOWCASE_BOOKS, READING_BOOK} from '../assets';
+import {fetchBooks, INITIAL_SHOWCASE_BOOKS, READING_BOOK} from '../assets';
 
 const originals = require('../assets/Originals.png');
 const review = require('../assets/Review.webp');
@@ -19,17 +19,11 @@ export const HomeScreen = ({navigation}) => {
   const [books, setBooks] = useState([]);
   const [search, setSearch] = useState('');
 
-  const fetchBooks = async (querry: string) =>
-    await fetch(`https://www.googleapis.com/books/v1/volumes?q=${querry}`, {
-      method: 'GET',
-    })
-      .then(response => response.json())
-      .then(obj => setBooks(obj.items))
-      .catch(e => console.error('Something went wrong', e));
-
   const toDetails = (data: any) => {
     navigation.navigate('Detail', {data});
   };
+
+  const setNewBooks = (fetchResult: any) => setBooks(fetchResult);
 
   const cauroselItem = (props: ICarouselRenderItemProps) => {
     return (
@@ -47,6 +41,7 @@ export const HomeScreen = ({navigation}) => {
           value={search}
           onChangeText={newText => {
             setSearch(newText);
+            search === '' ? setBooks([]) : fetchBooks(search, setNewBooks);
           }}
         />
         {!(search === '') ? (
