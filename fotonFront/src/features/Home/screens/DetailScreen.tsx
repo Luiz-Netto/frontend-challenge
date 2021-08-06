@@ -4,11 +4,9 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 
-const origials = require('../assets/Originals.png');
+const originals = require('../assets/Originals.png');
 
 export const DetailScreen = ({navigation, route}) => {
-  // const {data} = route.params;
-  // console.log(route.params.data.volumeInfo.title);
   const book = route.params.data;
   return (
     <SafeAreaView style={styles.container}>
@@ -20,16 +18,28 @@ export const DetailScreen = ({navigation, route}) => {
             onPress={() => navigation.goBack()}
             style={styles.icon}
           />
-          <Image source={origials} style={styles.image} />
+          <Image source={originals} style={styles.image} />
         </View>
         <View style={styles.bookInfoContainer}>
-          <Text style={styles.subTitle}>
+          {book.volumeInfo.subtitle ? (
+            <Text style={styles.subTitle}>
+              <Text style={styles.title}>{`${book.volumeInfo.title}`}</Text>
+              {`: ${book.volumeInfo.subtitle}`}
+            </Text>
+          ) : (
             <Text style={styles.title}>{`${book.volumeInfo.title}`}</Text>
-            {`: ${book.volumeInfo.subtitle}`}
-          </Text>
+          )}
           <Text style={styles.author}>{`${book.volumeInfo.authors}`}</Text>
-          <Text
-            style={styles.description}>{`${book.volumeInfo.description}`}</Text>
+          {book.volumeInfo.description ? (
+            <Text
+              style={
+                styles.description
+              }>{`${book.volumeInfo.description}`}</Text>
+          ) : (
+            <Text style={styles.description}>
+              This book has no description available
+            </Text>
+          )}
         </View>
       </ScrollView>
       <View style={styles.footerContainer}>

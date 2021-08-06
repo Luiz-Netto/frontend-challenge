@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {Text, StyleSheet, View, Image, Pressable} from 'react-native';
+import {Text, StyleSheet, View, Image, Pressable, FlatList} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import {BookShowcase, SearchBar, SectionTitle} from '../components';
-import {fetchBooks, INITIAL_SHOWCASE_BOOKS, READING_BOOK} from '../assets';
+import {BookItem, BookShowcase, SearchBar, SectionTitle} from '../components';
+import {INITIAL_SHOWCASE_BOOKS, READING_BOOK} from '../assets';
 
 const originals = require('../assets/Originals.png');
 const review = require('../assets/Review.webp');
@@ -19,11 +19,24 @@ export const HomeScreen = ({navigation}) => {
   const [books, setBooks] = useState([]);
   const [search, setSearch] = useState('');
 
+  useEffect(() => {
+    fetchBooks(search);
+  }, [search]);
+
   const toDetails = (data: any) => {
     navigation.navigate('Detail', {data});
   };
 
-  const setNewBooks = (fetchResult: any) => setBooks(fetchResult);
+  const fetchBooks = async (querry: string) =>
+    await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=${querry}&maxResults=9&projection=lite`,
+      {
+        method: 'GET',
+      },
+    )
+      .then(response => response.json())
+      .then(obj => setBooks(obj.items))
+      .catch(e => console.error('Something went wrong', e));
 
   const cauroselItem = (props: ICarouselRenderItemProps) => {
     return (
@@ -36,17 +49,25 @@ export const HomeScreen = ({navigation}) => {
   };
   return (
     <SafeAreaView style={styles.screenContainer}>
-      <ScrollView>
-        <SearchBar
-          value={search}
-          onChangeText={newText => {
-            setSearch(newText);
-            search === '' ? setBooks([]) : fetchBooks(search, setNewBooks);
-          }}
-        />
-        {!(search === '') ? (
-          <View></View>
-        ) : (
+      <SearchBar
+        value={search}
+        onChangeText={newText => {
+          setSearch(newText);
+        }}
+      />
+      {!(search === '') ? (
+        <View style={styles.searchResultsContainer}>
+          <FlatList
+            data={books}
+            renderItem={({item}) => {
+              return <BookItem props={item} goToDetails={toDetails} />;
+            }}
+            keyExtractor={book => book.id.toString()}
+            numColumns={3}
+          />
+        </View>
+      ) : (
+        <ScrollView>
           <View>
             <View style={styles.greetings}>
               <Text style={styles.greetingsText}>
@@ -105,8 +126,8 @@ export const HomeScreen = ({navigation}) => {
               </View>
             </View>
           </View>
-        )}
-      </ScrollView>
+        </ScrollView>
+      )}
     </SafeAreaView>
   );
 };
@@ -116,6 +137,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFCF9',
   },
+  searchResultsContainer: {marginHorizontal: 20},
   greetings: {
     alignItems: 'flex-start',
     marginHorizontal: 20,
